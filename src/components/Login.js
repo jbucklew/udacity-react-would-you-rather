@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { useLocation } from 'react-router-dom'
 import { handleSetAuthedUser } from '../actions/authedUser'
 
 class Login extends Component {
   state = {
-    selectedUser: '',
+    selectedUser: null,
     loggedIn: false
   }
 
@@ -26,7 +25,7 @@ class Login extends Component {
     dispatch(handleSetAuthedUser(selectedUser))
 
     this.setState(() => ({
-      selectedUser: '',
+      selectedUser: null,
       loggedUser: selectedUser ? false : true
     }))
   }
@@ -47,7 +46,7 @@ class Login extends Component {
               </option>
             ))}
           </select>
-          <button className='btn' type='submit' disabled={selectedUser === ''}>
+          <button className='btn' type='submit' disabled={selectedUser === null}>
             Submit
           </button>
         </form>
