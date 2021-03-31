@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import Question from './Question'
+import { Link } from 'react-router-dom'
+import QuestionView from './QuestionView'
 
 class Dashboard extends Component {
   state = {
@@ -25,7 +26,9 @@ class Dashboard extends Component {
         <ul className='question-list'>
           {this.props[this.state.showQuestionType].map((id) => (
             <li key={id}>
-              <Question id={id} />
+              <Link to={`/question/${id}`}>
+                <QuestionView id={id} />
+              </Link>
             </li>
           ))}
         </ul>

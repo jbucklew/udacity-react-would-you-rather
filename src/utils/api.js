@@ -1,8 +1,8 @@
 import {
   _getUsers,
   _getQuestions,
-  // _saveQuestion,
-  // _saveQuestionAnswer,
+  _saveQuestion,
+  _saveQuestionAnswer,
 } from './_DATA.js'
 
 export function getInitialData () {
@@ -13,4 +13,14 @@ export function getInitialData () {
     users,
     questions,
   }))
+}
+
+export function saveQuestion (question) {
+  return _saveQuestion(question)
+}
+
+// answer is an object with the following properties
+// { authedUser, qid, answer }
+export function saveQuestionAnswer (answer) {
+  return _saveQuestionAnswer(answer)
 }
