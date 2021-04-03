@@ -1,4 +1,5 @@
-import { RECEIVE_USERS, ADD_QUESTION_USER } from '../actions/users'
+import { RECEIVE_USERS } from '../actions/users'
+import { ADD_QUESTION, SAVE_ANSWER } from '../actions/questions'
 
 export default function users (state = {}, action) {
   switch(action.type) {
@@ -8,21 +9,31 @@ export default function users (state = {}, action) {
         ...action.users
       }
 
-    case ADD_QUESTION_USER:
-      console.log('add question user reducer')
-      console.log(action)
-      const {authedUser, qid} = action.question
-      console.log(`authedUser ${authedUser} qid ${qid}`)
-      console.log('state')
-      console.log(state)
+    case ADD_QUESTION:
+      const { question } = action
+
+      return {
+          ...state,
+          [question.author]: {
+            ...state[question.author],
+            questions: state[question.author].questions.concat([question.id])
+          }
+        }
+
+    case SAVE_ANSWER:
+      const { answer } = action
 
       return {
         ...state,
-        [authedUser]: {
-          ...state[authedUser],
-          questions: state[authedUser].questions.concat([qid])
+        [answer.authedUser]: {
+          ...state[answer.authedUser],
+          answers: {
+            ...state[answer.authedUser].answers,
+            [answer.qid]: answer.answer
+          }
         }
       }
+
     default:
       return state
   }

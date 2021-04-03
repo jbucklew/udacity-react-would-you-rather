@@ -1,5 +1,4 @@
 import { saveQuestion, saveQuestionAnswer } from '../utils/api'
-import { handleAddQuestionUser } from './users'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
@@ -32,9 +31,12 @@ export function handleAddQuestion (question) {
 
     // saveQuestion uses api to save to db
     // then addQuestion to store
+    // NOTE: when dispatching, the ADD_QUESTION actions gets passed to all
+    // reducers, so can handle in both question and users reducers without
+    // having to dispatch 2 separate actions since question has all the
+    // data needed for both
     return saveQuestion(question)
       .then((question) => dispatch(addQuestion(question)))
-      .then((question) => dispatch(handleAddQuestionUser(question)))
       .then(() => dispatch(hideLoading()))
   }
 }
@@ -52,8 +54,10 @@ export function handleSaveAnswer (answer) {
   return (dispatch) => {
     dispatch(showLoading())
 
+    // TODO: saveQuestionAnswer returns a promise but does not return
+    // any data (answer)
     return saveQuestionAnswer(answer)
-      .then((answer) => dispatch(saveAnswer(answer)))
+      .then(() => dispatch(saveAnswer(answer)))
       .then(() => dispatch(hideLoading()))
   }
 }

@@ -1,4 +1,7 @@
-import { ADD_QUESTION, RECEIVE_QUESTIONS } from '../actions/questions'
+import {
+  ADD_QUESTION,
+  RECEIVE_QUESTIONS,
+  SAVE_ANSWER } from '../actions/questions'
 
 export default function questions(state = {}, action) {
   switch (action.type) {
@@ -16,16 +19,22 @@ export default function questions(state = {}, action) {
         [question.id]: question
       }
 
-    // case SAVE_ANSWER:
-    //   // TODO: need to add answer to users[authedUser].answers
-    //   // TODO: need to add authedUser to
-    //   // TODO: questions[qid].optionOne/Two.votes
-    //   const { answer } = action
+    case SAVE_ANSWER:
+      const { answer } = action
+      console.log(answer)
+      // ex answer object:
+      //  { authedUser: "johndoe", qid: "am8ehyc8byjqgar0jgpub9", answer: "optionTwo" }
 
-    //   return {
-    //     ...state,
-
-    //   }
+      return {
+        ...state,
+        [answer.qid]: {
+          ...state[answer.qid],
+          [answer.answer]: {
+            ...state[answer.qid][answer.answer],
+            votes: state[answer.qid][answer.answer].votes.concat([answer.authedUser])
+          }
+        }
+      }
 
     default:
       return state
