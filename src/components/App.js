@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import LoadingBar from 'react-redux-loading'
@@ -9,6 +9,7 @@ import Nav from './Nav'
 import QuestionPage from './QuestionPage'
 import AddQuestion from './AddQuestion'
 import LeaderBoard from './LeaderBoard'
+import NoMatch404 from './NoMatch404'
 
 class App extends Component {
   componentDidMount() {
@@ -27,10 +28,13 @@ class App extends Component {
               : this.props.authedUser === 'guest'
                 ? <Login />
                 : <div>
-                    <Route path='/' exact component={Dashboard} />
-                    <Route path='/question/:id' component={QuestionPage} />
-                    <Route path='/add' exact component={AddQuestion} />
-                    <Route path='/leaderboard' exact component={LeaderBoard} />
+                    <Switch>
+                      <Route path='/' exact component={Dashboard} />
+                      <Route path='/question/:id' component={QuestionPage} />
+                      <Route path='/add' exact component={AddQuestion} />
+                      <Route path='/leaderboard' exact component={LeaderBoard} />
+                      <Route path='*' component={NoMatch404} />
+                    </Switch>
                   </div>
             }
           </div>

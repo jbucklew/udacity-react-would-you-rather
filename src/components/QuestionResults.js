@@ -14,8 +14,10 @@ class QuestionResults extends Component {
         <h3>{name} asks</h3>
         <p>Would you rather {question.optionOne.text}?</p>
         <p>{optOneVotes} of {totalVotes}</p>
+        <p>{Math.round((optOneVotes/totalVotes) * 100)}%</p>
         <p>Would you rather {question.optionTwo.text}?</p>
         <p>{optTwoVotes} of {totalVotes}</p>
+        <p>{Math.round((optTwoVotes/totalVotes) * 100)}%</p>
         <p>My vote: {myVote}</p>
       </div>
     )

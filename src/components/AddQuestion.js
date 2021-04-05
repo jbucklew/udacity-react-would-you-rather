@@ -45,6 +45,9 @@ class AddQuestion extends Component {
     }))
   }
 
+  // TODO: this redirects right away instead of waiting for the
+  // question to be submitted.  maybe change until submit complete
+  // before redirecting?
   render() {
     const { optionOneText, optionTwoText, toHome } = this.state
 

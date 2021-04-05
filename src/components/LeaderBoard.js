@@ -3,17 +3,19 @@ import { connect } from 'react-redux'
 
 class LeaderBoard extends Component {
   render() {
+    const { leaders, users } = this.props
+
     return (
       <div>
         <h3>Would You Rather Leaders</h3>
         <ul>
-          {this.props.leaders.map((id) => (
+          {leaders.map((id) => (
             <li key={id}>
-              {this.props.users[id].name} <br />
-              {this.props.users[id].avatarURL} <br />
-              {Object.keys(this.props.users[id].answers).length} <br />
-              {this.props.users[id].questions.length} <br />
-              <p>ADD TOTAL</p>
+              {users[id].name} <br />
+              {users[id].avatarURL} Avatar <br />
+              {Object.keys(users[id].answers).length}
+              {users[id].questions.length}
+              {Object.keys(users[id].answers).length + users[id].questions.length} <br />
             </li>
           ))}
         </ul>
