@@ -21,10 +21,6 @@ class QuestionPage extends Component {
   }
 }
 
-// TODO: show a 404 error if question id doesn't exist
-
-// TODO: If user answered the question show QuestionResults
-// else show Question ask
 function mapStateToProps({ authedUser, users, questions }, props) {
   // get question id from url path
   const { id } = props.match.params
