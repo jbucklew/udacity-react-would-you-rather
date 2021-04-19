@@ -1,64 +1,91 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { handleSetAuthedUser } from '../actions/authedUser'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { handleSetAuthedUser } from '../actions/authedUser';
+
+// Material UI
+import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
+
 
 class Login extends Component {
   state = {
-    selectedUser: null,
+    selectedUser: '',
     loggedIn: false
   }
 
   handleChange = (e) => {
-    const selectedUser = e.target.value
+    const selectedUser = e.target.value;
 
     this.setState(() => ({
       selectedUser
-    }))
+    }));
   }
 
   handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const { selectedUser } = this.state
-    const { dispatch } = this.props
+    const { selectedUser } = this.state;
+    const { dispatch } = this.props;
 
-    dispatch(handleSetAuthedUser(selectedUser))
+    dispatch(handleSetAuthedUser(selectedUser));
 
     this.setState(() => ({
-      selectedUser: null,
+      selectedUser: '',
       loggedUser: selectedUser ? false : true
-    }))
+    }));
   }
 
   render() {
-    const {userIds} = this.props
-    const {selectedUser} = this.state
+    const { userIds } = this.props;
+    const { selectedUser } = this.state;
 
     return (
-      <div>
-        <h3 className='center'>Select User</h3>
-        <form className='' onSubmit={this.handleSubmit}>
-          <select onChange={this.handleChange}>
-            <option value=''>Select User...</option>
-            {userIds.map((id) => (
-              <option key={id} value={id}>
-                {id}
-              </option>
-            ))}
-          </select>
-          <button className='btn' type='submit' disabled={selectedUser === null}>
-            Submit
-          </button>
-        </form>
-      </div>
-    )
+      <Container maxWidth='xs'>
+        <div className='login-container'>
+          <form className='login-form' onSubmit={this.handleSubmit}>
+            <FormControl variant='outlined' fullWidth margin='normal'>
+              <InputLabel id='select-user-label'>Select User</InputLabel>
+              <Select
+                labelId='select-user-label'
+                id='select-user'
+                fullWidth
+                onChange={this.handleChange}
+                label='Select User'
+                value={selectedUser}
+              >
+                <MenuItem value=''><em>None</em></MenuItem>
+                {userIds.map((id) => (
+                  <MenuItem key={id} value={id}>{id}</MenuItem>
+
+                ))}
+              </Select>
+            </FormControl>
+
+            <Button
+              fullWidth
+              className='login-submit-button'
+              variant='contained'
+              color='primary'
+              type='submit'
+              disabled={selectedUser === ''}>
+              Login
+            </Button>
+          </form>
+        </div>
+      </Container>
+    );
   }
 }
 
-function mapStateToProps ({users}) {
+function mapStateToProps ({ users }) {
   return {
     userIds: Object.keys(users).sort()
-  }
+  };
 }
 
-export default connect(mapStateToProps)(Login)
+export default connect(mapStateToProps)(Login);

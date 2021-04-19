@@ -3,7 +3,7 @@ import {
   _getQuestions,
   _saveQuestion,
   _saveQuestionAnswer,
-} from './_DATA.js'
+} from './_DATA.js';
 
 export function getInitialData () {
   return Promise.all([
@@ -12,15 +12,15 @@ export function getInitialData () {
   ]).then(([users, questions]) => ({
     users,
     questions,
-  }))
+  }));
 }
 
 export function saveQuestion (question) {
-  return _saveQuestion(question)
+  return _saveQuestion(question);
 }
 
 // answer is an object with the following properties
 // { authedUser, qid, answer }
 export function saveQuestionAnswer (answer) {
-  return _saveQuestionAnswer(answer)
+  return _saveQuestionAnswer(answer);
 }

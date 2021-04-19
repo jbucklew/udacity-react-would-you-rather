@@ -1,0 +1,89 @@
+.flex-root {
+  display: flex;
+  flex-grow: 1;
+}
+
+.active {
+  text-decoration: none;
+}
+
+.grid-margin {
+  margin-top: 8px;
+}
+
+header .MuiIconButton-root {
+  color: white;
+  padding: 0 0 0 12px !important;
+}
+
+.toolbar-title {
+  flex: 1;
+}
+
+.navbar-title {
+  justify-content: flex-start;
+  overflow-x: auto;
+}
+
+.navbar-link {
+  flex-shrink: 0;
+  padding: 8px;
+  text-decoration: none;
+}
+
+.login-container,
+.add-question-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 32px;
+}
+
+.login-form,
+.new-question-form {
+  margin-top: 8px;
+  width: 100%;
+}
+
+.login-submit-button,
+.add-question-submit-button {
+  margin: 16px 0 !important;
+}
+
+.dashboard-container {
+  flex-grow: 1;
+}
+
+.questions-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 4px;
+  width: 100%;
+}
+
+.question-link {
+  text-decoration: none;
+  width: 100%;
+}
+
+.question-paper {
+  flex-grow: 1;
+  padding: 10px;
+  margin: 10px;
+}
+
+.question-result {
+  border: 1px solid white;
+  padding: 10px;
+}
+
+.my-vote-highlight {
+  background-color: honeydew !important;
+  border: 1px solid green;
+  padding: 10px;
+}
+
+.field-m {
+  margin: 10px 0;
+}

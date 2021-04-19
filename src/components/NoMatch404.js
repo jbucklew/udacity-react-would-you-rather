@@ -1,7 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-export default function NoMatch404() {
+// Material UI
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+
+export default function NoMatch404 () {
   return (
-    <h3>404 Error - Page not found</h3>
-  )
+    <Container maxWidth='xs'>
+      <Typography variant='h5' noWrap align='center' gutterBottom>404 Error - Page not found</Typography>
+    </Container>
+  );
 }
