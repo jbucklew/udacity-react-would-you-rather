@@ -11,3 +11,6 @@ To get started:
 
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
+
+## Note:
+I wanted to try using a React css framework.  I decided to use [Material UI](https://material-ui.com) so you'll see that in my code.
