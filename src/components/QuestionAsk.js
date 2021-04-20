@@ -14,10 +14,12 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Typography from '@material-ui/core/Typography';
 
 class QuestionAsk extends Component {
+  // component state used to track the users response.
   state = {
     selectedOption: null
   }
 
+  // update component state when user response is selected or changed
   handleChange = (e) => {
     const selectedOption = e.target.value;
 
@@ -26,6 +28,7 @@ class QuestionAsk extends Component {
     }));
   }
 
+  // save user selection and reset component state
   handleSubmit = (e) => {
     e.preventDefault();
 

@@ -5,6 +5,7 @@ import {
   _saveQuestionAnswer,
 } from './_DATA.js';
 
+// get user and question data from data source
 export function getInitialData () {
   return Promise.all([
     _getUsers(),
@@ -19,8 +20,6 @@ export function saveQuestion (question) {
   return _saveQuestion(question);
 }
 
-// answer is an object with the following properties
-// { authedUser, qid, answer }
 export function saveQuestionAnswer (answer) {
   return _saveQuestionAnswer(answer);
 }

@@ -11,10 +11,13 @@ import Typography from '@material-ui/core/Typography';
 import QuestionView from './QuestionView';
 
 class Dashboard extends Component {
+  // component state used to determine which questions to display
+  // unanswered (default) or answered.
   state = {
     showQuestionType: 'unanswered'
   }
 
+  // toggle the question type displayed, unanswered or answered
   handleChange = (e, value) => {
     const showQuestionType = value;
 
@@ -64,6 +67,7 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps ({ questions, users, authedUser }) {
+  // sort answered and unanswered questions in descending order by time
   const sortedQuestions = Object.keys(questions)
     .sort((a,b) => questions[b].timestamp - questions[a].timestamp);
   const userAnswered = Object.keys(users[authedUser].answers);

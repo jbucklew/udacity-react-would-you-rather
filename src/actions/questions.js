@@ -21,7 +21,7 @@ function addQuestion (question) {
 
 export function handleAddQuestion (question) {
   return (dispatch) => {
-    dispatch(showLoading())
+    dispatch(showLoading());
 
     // When dispatching, the ADD_QUESTION actions gets passed to all
     // reducers, so can handle in both question and users reducers without
@@ -44,6 +44,7 @@ export function handleSaveAnswer (answer) {
   return (dispatch) => {
     dispatch(showLoading())
 
+    // use api to save answer then update state
     return saveQuestionAnswer(answer)
       .then(() => dispatch(saveAnswer(answer)))
       .then(() => dispatch(hideLoading()));

@@ -13,11 +13,13 @@ import Select from '@material-ui/core/Select';
 
 
 class Login extends Component {
+  // component state to track user selected from the drop-down
   state = {
     selectedUser: '',
     loggedIn: false
   }
 
+  // update component state when drop-down value changes
   handleChange = (e) => {
     const selectedUser = e.target.value;
 
@@ -26,6 +28,7 @@ class Login extends Component {
     }));
   }
 
+  // on submit dispatch selected user action and reset component state
   handleSubmit = (e) => {
     e.preventDefault();
 
@@ -82,6 +85,7 @@ class Login extends Component {
   }
 }
 
+// get list of available user ids.
 function mapStateToProps ({ users }) {
   return {
     userIds: Object.keys(users).sort()

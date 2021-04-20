@@ -11,12 +11,14 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
 class AddQuestion extends Component {
+  // component state used only to track the 2 options
   state = {
     optionOneText: '',
     optionTwoText: '',
     toHome: false
   }
 
+  // update component state for first option when it changes.
   handleOptionOneChange= (e) => {
     const optionOneText = e.target.value;
     this.setState(() => ({
@@ -24,6 +26,7 @@ class AddQuestion extends Component {
     }));
   }
 
+  // update component state for second option when it changes.
   handleOptionTwoChange= (e) => {
     const optionTwoText = e.target.value;
     this.setState(() => ({
@@ -31,12 +34,14 @@ class AddQuestion extends Component {
     }));
   }
 
+  // save question options to data source and update application state
   handleSubmit = (e) => {
     e.preventDefault();
 
     const { optionOneText, optionTwoText } = this.state;
     const { dispatch, authedUser } = this.props;
 
+    // format options object in expected format
     const question = {
       optionOneText,
       optionTwoText,
@@ -45,6 +50,9 @@ class AddQuestion extends Component {
 
     dispatch(handleAddQuestion(question));
 
+    // reset component state
+    // redirects to home instead of waiting for the
+    // question to be submitted.
     this.setState(() => ({
       optionOneText: '',
       optionTwoText: '',
@@ -52,8 +60,6 @@ class AddQuestion extends Component {
     }));
   }
 
-  // this redirects right away instead of waiting for the
-  // question to be submitted.
   render() {
     const { optionOneText, optionTwoText, toHome } = this.state;
 
@@ -107,6 +113,7 @@ class AddQuestion extends Component {
   }
 }
 
+// only authedUser required so we know who submitted the question
 function mapStateToProps ({ authedUser }) {
   return {
     authedUser

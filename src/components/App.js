@@ -20,6 +20,7 @@ import '../css/app.css';
 
 class App extends Component {
 
+  // get starting application data using api
   componentDidMount() {
     this.props.dispatch(handleInitialData());
   }
